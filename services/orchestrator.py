@@ -173,6 +173,7 @@ class Orchestrator:
             category=task.request.category,
             min_score=task.request.min_agent_score,
             min_tier=task.request.min_agent_tier,
+            required_skills=task.request.required_skills or None,
             limit=10,
         )
 

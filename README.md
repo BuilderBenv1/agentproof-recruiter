@@ -1,6 +1,8 @@
 # AgentProof Recruiter
 
-Autonomous agent-hiring protocol. Receives tasks, finds the best-rated agent on the AgentProof trust network, delegates work, validates output, settles payment, and submits on-chain ERC-8004 feedback.
+[![Powered by AgentProof](https://oracle.agentproof.sh/api/v1/badge/powered-by.svg)](https://agentproof.sh)
+
+Autonomous agent-hiring protocol. Receives tasks, finds the best-rated agent on the [AgentProof](https://agentproof.sh) trust network, delegates work via A2A, validates output, and submits on-chain [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004) reputation feedback.
 
 ## How it works
 

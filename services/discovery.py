@@ -84,12 +84,12 @@ class DiscoveryService:
         for a in agents:
             candidates.append(AgentCandidate(
                 agent_id=a.get("agent_id") or a.get("id", 0),
-                name=a.get("name", ""),
+                name=a.get("name") or "",
                 score=float(a.get("score", a.get("composite_score", 0))),
-                tier=a.get("tier", "unranked"),
-                category=a.get("category", ""),
-                endpoint=a.get("endpoint", ""),
-                risk_level=a.get("risk_level", "unknown"),
+                tier=a.get("tier") or "unranked",
+                category=a.get("category") or "",
+                endpoint=a.get("endpoint") or "",
+                risk_level=a.get("risk_level") or "unknown",
             ))
 
         candidates.sort(key=lambda c: c.score, reverse=True)
@@ -127,10 +127,10 @@ class DiscoveryService:
 
             candidates.append(AgentCandidate(
                 agent_id=a.get("agent_id", 0),
-                name=a.get("name", ""),
+                name=a.get("name") or "",
                 score=float(a.get("composite_score", 0)),
-                tier=a.get("tier", "unranked"),
-                category=a.get("category", ""),
+                tier=a.get("tier") or "unranked",
+                category=a.get("category") or "",
                 endpoint=endpoint,
                 risk_level="unknown",
             ))

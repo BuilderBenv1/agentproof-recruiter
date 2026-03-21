@@ -210,7 +210,15 @@ async def a2a_handler(request: Request):
         required_skills=metadata.get("required_skills", []),
     )
 
-    task = await orchestrator.submit_task(task_req)
+    try:
+        task = await orchestrator.submit_task(task_req)
+    except Exception as e:
+        logger.exception(f"A2A task failed: {e}")
+        return JSONResponse(content={
+            "jsonrpc": jsonrpc,
+            "error": {"code": -32000, "message": str(e)},
+            "id": req_id,
+        })
 
     return JSONResponse(content={
         "jsonrpc": jsonrpc,
@@ -239,8 +247,15 @@ async def a2a_handler(request: Request):
 @app.post("/api/v1/tasks")
 async def create_task(request: TaskRequest):
     """Submit a task for the recruiter to handle."""
-    task = await orchestrator.submit_task(request)
-    return task.model_dump(mode="json")
+    try:
+        task = await orchestrator.submit_task(request)
+        return task.model_dump(mode="json")
+    except Exception as e:
+        logger.exception(f"Task submission failed: {e}")
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e), "type": type(e).__name__},
+        )
 
 
 @app.get("/api/v1/tasks/{task_id}")

@@ -43,7 +43,17 @@ class Orchestrator:
         )
 
         # Run the pipeline
-        await self._execute_pipeline(task)
+        try:
+            await self._execute_pipeline(task)
+        except Exception as e:
+            logger.exception(f"Pipeline failed for {task_id}: {e}")
+            task.update_status(TaskStatus.FAILED, error=f"Pipeline error: {e}")
+            self._log.log(
+                action="pipeline_error",
+                description=f"Unhandled error in pipeline: {e}",
+                outcome="error",
+                details={"task_id": task_id, "error": str(e)},
+            )
         return task
 
     def get_task(self, task_id: str) -> Task | None:

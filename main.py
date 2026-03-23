@@ -93,6 +93,21 @@ app.add_middleware(
 )
 
 
+# ── Root manifest ────────────────────────────────────────────
+
+@app.get("/")
+def root():
+    return {
+        "name": "AgentProof Recruiter",
+        "version": "0.1.0",
+        "description": "Autonomous agent-hiring protocol powered by ERC-8004 trust scores",
+        "docs": "/docs",
+        "agent_card": "/.well-known/agent.json",
+        "health": "/health",
+        "a2a": "/a2a",
+    }
+
+
 # ── Agent card ───────────────────────────────────────────────
 
 def _build_agent_card() -> dict:

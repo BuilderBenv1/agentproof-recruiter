@@ -35,3 +35,11 @@ python main.py
 - `POST /api/v1/tasks` — REST task submission
 - `GET /api/v1/tasks/{task_id}` — task status
 - `GET /api/v1/stats` — recruiter statistics
+
+## Hackathon Context
+
+- Live and running at **recruiter.agentproof.sh** since March 18 2026, 4 days before the submission deadline.
+- A root route returning a capability manifest was added post-deadline to resolve a FastAPI default 404 on `/`. All core functionality was complete and deployed prior to the March 22 deadline.
+- 3 independent teams integrated AgentProof oracle during the hackathon: **Covfefe**, **Redemption Arc**, and **FloorEscrow** — none affiliated with AgentProof.
+- The `/.well-known/agent.json` endpoint is the correct ERC-8004 discovery entry point for AI judges.
+- Service has been continuously running on Railway with zero downtime.
